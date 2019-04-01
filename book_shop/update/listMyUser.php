@@ -3,6 +3,9 @@
 error_reporting(E_ALL & ~E_NOTICE);
 session_start();
 require_once ("../db.php");
+if (!isset($_SESSION["username"])) {
+		header("location: ../index.php");
+	}
 $db = db::get();
 $selectUserDataQuery = "SELECT * FROM users WHERE username = '".$_SESSION["username"]."'";
 $userData = $db->getArray($selectUserDataQuery);
